@@ -11,17 +11,15 @@
 
     - name: stop tomcat
       service: name=tomcat8 state=stopped
-      register: h_out
       become: true
 
-    - debug: var=h_out
+    #- debug: var=h_out
 
     - name: To Copy the war file
       copy: src=/home/prassanna/Desktop/ansible/sample.war dest=/var/lib/tomcat8/webapps/sample.war
 
     - name: start tomcat
       service: name=tomcat8 state=started
-      register: h_out
       become: true
 
-    - debug: var=h_out
+    #- debug: var=h_out
