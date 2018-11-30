@@ -12,6 +12,7 @@
     - name: stop tomcat
       service: name=tomcat8 state=stopped
       register: h_out
+      become: true
 
     - debug: var=h_out
 
