@@ -21,6 +21,6 @@
     - name: start tomcat
       service: name=tomcat8 state=started
       register: h_out
-      become:true
+      become: true
 
     - debug: var=h_out
