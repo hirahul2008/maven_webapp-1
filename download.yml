@@ -1,0 +1,25 @@
+- hosts: localhost
+  tasks:
+    - name: To download war file
+      get_url: url=https://tomcat.apache.org/tomcat-7.0-doc/appdev/sample/sample.war dest=/home/prassanna/Desktop/ansible
+
+    - name: To change permission
+      file: path=/home/prassanna/Desktop/ansible/sample.war mode=0777
+
+    - name: To change Permission of webapps
+      file: path=/var/lib/tomcat8/webapps mode=0777
+
+    - name: stop tomcat
+      service: name=tomcat8 state=stopped
+      register: h_out
+
+    - debug: var=h_out
+
+    - name: To Copy the war file
+      copy: src=/home/prassanna/Desktop/ansible/sample.war dest=/var/lib/tomcat8/webapps/sample.war
+
+    - name: start tomcat
+      service: name=tomcat8 state=started
+      register: h_out
+
+    - debug: var=h_out
